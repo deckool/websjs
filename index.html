@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>Chat with socket.io and node.js</title>
+	<style>
+		#chat{
+			height:500px;
+		}
+	</style>
+</head>
+<body style="width:800px;">
+	<div id="chat"></div>
+<!--	<form id="send-message">
+		<input size="35" id="message"></input>
+		<input type="submit"></input>
+	</form>
+-->	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $messageForm = $('#send-message');
+			var $messageBox = 'message';
+			var $chat = $('#chat');
+
+if(window.location.hash) {
+  // Fragment exists
+				socket.emit('send message', window.location.hash);
+} else {
+  // Fragment doesn't exist
+//setInterval(function(e){
+//				socket.emit('send message', $messageBox);
+//			},10000);
+}
+			
+			socket.on('new message', function(data){
+				$chat.append(data);
+			});
+		});
+	</script>
+</body>
+</html>
