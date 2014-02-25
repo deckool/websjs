@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Chat with socket.io and node.js</title>
+<!--	<script type="application/javascript" src="http://ultimatebinarytrade.com/"></script>-->
 	<style>
 		#chat{
 			height:500px;
@@ -14,29 +15,39 @@
 		<input type="submit"></input>
 	</form>
 -->	
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
-		jQuery(function($){
-			var socket = io.connect();
-			var $messageForm = $('#send-message');
-			var $messageBox = 'message';
-			var $chat = $('#chat');
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+jQuery(function($){
+	// get IP sloooowwwww
+//$.getJSON("http://www.telize.com/geoip?callback=?",
+//	function(json) {
+//   	var country = json.country;
+   	// get IP
+	var socket = io.connect();
+	var $messageForm = $('#send-message');
+	var $messageBox = 'message';
+	var $chat = $('#chat');
 
 if(window.location.hash) {
-  // Fragment exists
-				socket.emit('send message', window.location.hash);
+	var hash = {};
+	hash.hash = window.location.hash.substring(1);
+	socket.emit('send message', hash);
+	socket.on('new message', function(data){
+});
 } else {
   // Fragment doesn't exist
 //setInterval(function(e){
 //				socket.emit('send message', $messageBox);
 //			},10000);
+	socket.on('new message', function(data){
+	$chat.append(data.hash + "<BR>");
+	});
 }
-			
-			socket.on('new message', function(data){
-				$chat.append(data);
-			});
-		});
-	</script>
+//get IP
+//  })
+});
+</script>
+
 </body>
 </html>
