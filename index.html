@@ -6,6 +6,10 @@
 		#chat{
 			height:500px;
 		}
+		.high {
+			color:green;
+			font-size:500px;
+		}
 	</style>
 </head>
 <body style="width:800px;">
@@ -37,7 +41,6 @@ if(window.location.hash) {
 
 	});
 } else {
-  // Fragment doesn't exist
 //setInterval(function(e){
 //				socket.emit('send message', $messageBox);
 //			},10000);
@@ -45,6 +48,10 @@ if(window.location.hash) {
 	var insert = '<h1>' + data + '</h1>';
 //	$chat.append(insert);
 	chat.innerHTML = data;
+	chat.className = 'high';
+setInterval(function(e){
+	chat.className = '';
+			},1000);
 	});
 }
 //get IP
