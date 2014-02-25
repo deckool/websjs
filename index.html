@@ -1,7 +1,6 @@
 <html>
 <head>
-	<title>Chat with socket.io and node.js</title>
-<!--	<script type="application/javascript" src="http://ultimatebinarytrade.com/"></script>-->
+	<title>socket.io and node.js</title>
 	<style>
 		#chat{
 			height:500px;
@@ -23,11 +22,6 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
 jQuery(function($){
-	// get IP sloooowwwww
-//$.getJSON("http://www.telize.com/geoip?callback=?",
-//	function(json) {
-//   	var country = json.country;
-   	// get IP
 	var socket = io.connect();
 	var $messageForm = $('#send-message');
 	var $messageBox = 'message';
@@ -46,7 +40,6 @@ if(window.location.hash) {
 //			},10000);
 	socket.on('new message', function(data){
 	var insert = '<h1>' + data + '</h1>';
-//	$chat.append(insert);
 	chat.innerHTML = data;
 	chat.className = 'high';
 setInterval(function(e){
@@ -54,8 +47,6 @@ setInterval(function(e){
 			},1000);
 	});
 }
-//get IP
-//  })
 });
 </script>
 </body>

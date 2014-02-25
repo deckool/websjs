@@ -16,7 +16,6 @@ mongoose.connect('mongodb://localhost/tracker', function(err){
 
 var chatSchema = mongoose.Schema({
 	subid: String,
-//	msg: String,
 	created: {type: Date, default: Date.now}
 });
 
@@ -29,9 +28,7 @@ app.get('/', function(req, res){
 io.sockets.on('connection', function(socket){
 	socket.on('send message', function(data){
 
-//		console.log(data);
 		var subid = data.hash;
-//		console.log('after trimming message is: ' + msg);
 
 			var newMsg = new Chat({subid: subid});
 			newMsg.save(function(err){
@@ -40,6 +37,5 @@ io.sockets.on('connection', function(socket){
 					io.sockets.emit('new message', c);
  				 });
 			});
-//		io.sockets.emit('new message', data);
 	});
 });
