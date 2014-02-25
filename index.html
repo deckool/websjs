@@ -9,7 +9,7 @@
 	</style>
 </head>
 <body style="width:800px;">
-	<div id="chat"></div>
+	<div id="chat"><h1 id="chat1"></h1></div>
 <!--	<form id="send-message">
 		<input size="35" id="message"></input>
 		<input type="submit"></input>
@@ -27,27 +27,29 @@ jQuery(function($){
 	var socket = io.connect();
 	var $messageForm = $('#send-message');
 	var $messageBox = 'message';
-	var $chat = $('#chat');
+	var chat = document.getElementById('chat1');
 
 if(window.location.hash) {
 	var hash = {};
 	hash.hash = window.location.hash.substring(1);
 	socket.emit('send message', hash);
 	socket.on('new message', function(data){
-});
+
+	});
 } else {
   // Fragment doesn't exist
 //setInterval(function(e){
 //				socket.emit('send message', $messageBox);
 //			},10000);
 	socket.on('new message', function(data){
-	$chat.append(data.hash + "<BR>");
+	var insert = '<h1>' + data + '</h1>';
+//	$chat.append(insert);
+	chat.innerHTML = data;
 	});
 }
 //get IP
 //  })
 });
 </script>
-
 </body>
 </html>
