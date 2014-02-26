@@ -27,10 +27,9 @@ app.get('/', function(req, res){
 
 io.sockets.on('connection', function(socket){
 
-		Chat.count(function(err, c){
-			console.log(c);
-			io.sockets.emit('last count', c);
-		});
+	Chat.count(function(err, c){
+		io.sockets.emit('last count', c);
+	});
 
 	socket.on('send message', function(data){
 
