@@ -33,8 +33,9 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('send message', function(data){
 
-		var subid = data.hash;
+			io.sockets.emit('entry message', 'link');
 
+			var subid = data.hash;
 			var newMsg = new Chat({subid: subid});
 			newMsg.save(function(err){
 				if(err) throw err;

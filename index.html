@@ -1,6 +1,8 @@
 <html>
 <head>
 	<title>socket.io and node.js</title>
+<!--<script src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+<script src="/socket.io/socket.io.js"></script>
 	<style>
 		#chat{
 			height:500px;
@@ -18,21 +20,19 @@
 		<input type="submit"></input>
 	</form>
 -->	
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
 <script>
-jQuery(function($){
 	var socket = io.connect();
-	var $messageForm = $('#send-message');
-	var $messageBox = 'message';
+//	var messageForm = document.getElementById('send-message');
+//	var messageBox = 'message';
 	var chat = document.getElementById('chat1');
 
 if(window.location.hash) {
 	var hash = {};
 	hash.hash = window.location.hash.substring(1);
 	socket.emit('send message', hash);
-	socket.on('new message', function(data){
-
+	socket.on('entry message', function(data){
+		document.location.href = data;
+//	console.log(data);
 	});
 } else {
 //setInterval(function(e){
@@ -49,7 +49,6 @@ if(window.location.hash) {
 			},1000);
 	});
 }
-});
 </script>
 </body>
 </html>
