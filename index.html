@@ -38,12 +38,14 @@ if(window.location.hash) {
 //setInterval(function(e){
 //				socket.emit('send message', $messageBox);
 //			},10000);
+	socket.on('last count',function(count){
+		chat.innerHTML = count;
+	});
 	socket.on('new message', function(data){
-	var insert = '<h1>' + data + '</h1>';
 	chat.innerHTML = data;
 	chat.className = 'high';
-setInterval(function(e){
-	chat.className = '';
+	setInterval(function(e){
+		chat.className = '';
 			},1000);
 	});
 }
